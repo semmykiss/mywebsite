@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors (kept) */
+  --color-primary: #0078D4;
+  --color-primary-dark: #005a9e;
+  --color-primary-light: #40a3e0;
+  --color-navy: #0F172A;
+  --color-navy-light: #1e293b;
+  --color-slate-custom: #334155;
+  --color-cyan-brand: #06B6D4;
+  --color-purple-brand: #7C3AED;
+  --color-purple-light: #a78bfa;
+
+  /* Brutalist-editorial surface & neutral scale (Dayos-derived, remapped to Pentacore brand) */
+  --color-canvas: #e5e5e5;
+  --color-paper: #ffffff;
+  --color-mist: #f3f3f3;
+  --color-ash: #c6c6c6;
+  --color-smoke: #979797;
+  --color-ink-slate: #444444;
+  --color-graphite: #2f2f2f;
+  --color-accent-chip: #d6ebfb;
+  --color-accent-highlight: #F5A623;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-bebas-neue), 'Bebas Neue', ui-sans-serif, system-ui, sans-serif;
+  --font-mono-label: var(--font-ibm-plex-mono), 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale */
+  --text-caption: 0.75rem;
+  --text-label: 0.875rem;
+  --text-body: 1rem;
+  --text-subheading: 1.125rem;
+  --text-subheading-lg: 1.25rem;
+  --text-heading-sm: 1.75rem;
+  --text-heading: 2.5rem;
+  --text-heading-lg: 3rem;
+  --text-display: 5rem;
+  --text-display-xl: 8.125rem;
+
+  --radius: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-card: 2rem;
+  --radius-card-lg: 4rem;
+  --radius-pill: 3rem;
+  --radius-button: 0.5rem;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #e5e5e5;
+    color: #0F172A;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background: #0078D4;
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #0078D4;
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  /* Editorial display heading — massive uppercase condensed, tight leading */
+  .heading-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+
+  /* Secondary uppercase heading — Inter, lighter weight, still uppercase */
+  .heading-secondary {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  /* Mono micro-label — tags, meta, numbered markers */
+  .label-mono {
+    font-family: var(--font-mono-label);
+    font-size: 0.75rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  /* Flat pill tag — the signature accent chip */
+  .tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: var(--color-accent-chip);
+    color: #0F172A;
+    border-radius: var(--radius-pill);
+    padding: 0.375rem 0.9rem;
+    font-family: var(--font-mono-label);
+    font-size: 0.75rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  /* Flat surfaces — no shadow, no gradient. Depth via color contrast only. */
+  .card-flat {
+    background: #ffffff;
+    border-radius: var(--radius-card);
+    box-shadow: none;
+  }
+
+  .card-inverted {
+    background: #0F172A;
+    color: #ffffff;
+    border-radius: var(--radius-card);
+    box-shadow: none;
+  }
+
+  .card-arc-top {
+    border-radius: var(--radius-card-lg) var(--radius-card-lg) 0 0;
+  }
+
+  /* Buttons — flat, small radius (the brutalist departure from soft rounded pills) */
+  .btn-filled {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #0F172A;
+    color: #ffffff;
+    border-radius: var(--radius-button);
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    box-shadow: none;
+    transition: background-color 0.2s ease;
+  }
+  .btn-filled:hover {
+    background: #000000;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: #444444;
+    border: 1.5px solid #444444;
+    border-radius: var(--radius-button);
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    box-shadow: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .btn-ghost:hover {
+    background: #0F172A;
+    color: #ffffff;
+    border-color: #0F172A;
+  }
+
+  .nav-pill {
+    background: #ffffff;
+    border-radius: var(--radius-pill);
+    box-shadow: none;
+  }
+
+  .gradient-text {
+    color: #0078D4;
+  }
+
+  .gradient-text-blue {
+    color: #0078D4;
+  }
+
+  .hero-gradient {
+    background: #0F172A;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-dark {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .card-hover {
+    transition: transform 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+  }
+
+  .section-padding {
+    padding: 5rem 0;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 30s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+
+  .grid-dots {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
