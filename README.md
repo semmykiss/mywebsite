@@ -23,13 +23,24 @@ npm run lint     # run ESLint
 
 ## Running with Docker
 
-The included `Dockerfile` produces a minimal production image using Next.js's standalone output, and `docker-compose.yaml` runs it on port 3000.
+The included `Dockerfile` produces a minimal production image using Next.js's standalone output. `docker-compose.yaml` runs it bound to `127.0.0.1:3000` only — it's meant to sit behind a reverse proxy (nginx), not be exposed directly.
 
 ```bash
-docker compose up --build
+docker compose up -d --build
 ```
 
-Then visit [http://localhost:3000](http://localhost:3000). Use `docker compose up -d --build` to run it detached, and `docker compose down` to stop it.
+Use `docker compose down` to stop it, and rerun `docker compose up -d --build` after a `git pull` to redeploy.
+
+### Reverse proxy (production)
+
+`deploy/nginx-pentacore.conf` is an nginx site config that proxies `:80` to the app on `127.0.0.1:3000`. On the server:
+
+```bash
+sudo cp deploy/nginx-pentacore.conf /etc/nginx/sites-available/pentacore
+sudo ln -s /etc/nginx/sites-available/pentacore /etc/nginx/sites-enabled/pentacore
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t && sudo systemctl reload nginx
+```
 
 ## Project Structure
 
