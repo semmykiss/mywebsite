@@ -49,24 +49,8 @@ export function WhyChooseUs() {
               operates, competes, and grows in the digital era.
             </p>
 
-            {/* Trust indicators */}
-            <div className="space-y-4">
-              {[
-                { stat: "10+", label: "Years in business" },
-                { stat: "50+", label: "Enterprise clients served" },
-                { stat: "99%", label: "Client retention rate" },
-              ].map(({ stat, label }) => (
-                <div key={label} className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-lg bg-[#0F172A] flex items-center justify-center flex-shrink-0">
-                    <span className="heading-secondary text-xl text-white">{stat}</span>
-                  </div>
-                  <p className="text-[#444444] font-medium">{label}</p>
-                </div>
-              ))}
-            </div>
-
             {/* Stars */}
-            <div className="flex items-center gap-2 mt-8 p-4 rounded-2xl bg-[#f3f3f3] w-fit">
+            <div className="flex items-center gap-2 p-4 rounded-2xl bg-[#f3f3f3] w-fit">
               <div className="flex">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="w-4 h-4 text-[#F5A623] fill-[#F5A623]" />

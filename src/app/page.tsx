@@ -4,7 +4,6 @@ import { AboutSnippet } from "@/components/home/AboutSnippet";
 import { ServicesOverview } from "@/components/home/ServicesOverview";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { Industries } from "@/components/home/Industries";
-import { Stats } from "@/components/home/Stats";
 import { Testimonials } from "@/components/home/Testimonials";
 import { CTA } from "@/components/home/CTA";
 
@@ -17,7 +16,6 @@ export default function HomePage() {
       <ServicesOverview />
       <WhyChooseUs />
       <Industries />
-      <Stats />
       <Testimonials />
       <CTA />
     </>

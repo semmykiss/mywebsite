@@ -7,6 +7,7 @@ import {
   Cpu, Users, Headphones, Briefcase, GraduationCap, Zap, ArrowRight,
   Building2, Code2, AppWindow,
 } from "lucide-react";
+import { BrandIcon } from "@/components/ui/BrandIcon";
 
 const categories = [
   {
@@ -99,8 +100,14 @@ export function AllServices() {
                   >
                     <Link href={`/services/${service.slug}`} className="group block h-full">
                       <div className="card-flat h-full p-6 hover:-translate-y-1 transition-transform duration-300">
-                        <div className={`w-11 h-11 rounded-lg ${cat.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                          <service.icon className="w-5 h-5 text-white" />
+                        <div className="mb-4 group-hover:scale-110 transition-transform inline-block">
+                          <BrandIcon
+                            slug={service.slug}
+                            name={service.name}
+                            fallback={service.icon}
+                            fallbackColor={cat.color}
+                            size="sm"
+                          />
                         </div>
                         <h3 className="font-bold text-[#0F172A] text-base mb-2 group-hover:text-[#0078D4] transition-colors">
                           {service.name}

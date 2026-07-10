@@ -9,13 +9,12 @@ import {
   MapPin,
   ArrowRight,
   Shield,
-  Cloud,
-  Monitor,
   Send,
   ExternalLink,
   Rss,
   Play,
   X,
+  type LucideIcon,
 } from "lucide-react";
 
 const footerLinks = {
@@ -51,10 +50,10 @@ const socials = [
   { icon: Play, href: "#", label: "YouTube" },
 ];
 
-const certifications = [
-  { label: "Microsoft Partner", icon: Monitor },
+const certifications: { label: string; logo?: string; icon?: LucideIcon }[] = [
+  { label: "Microsoft Partner", logo: "/logos/microsoft.svg" },
   { label: "ISO 27001", icon: Shield },
-  { label: "AWS Partner", icon: Cloud },
+  { label: "AWS Partner", logo: "/logos/aws.svg" },
 ];
 
 export function Footer() {
@@ -212,10 +211,14 @@ export function Footer() {
               <div className="mt-8">
                 <h4 className="label-mono text-white mb-4">Certified By</h4>
                 <div className="space-y-2">
-                  {certifications.map(({ label, icon: Icon }) => (
-                    <div key={label} className="flex items-center gap-2 text-xs text-[#979797]">
-                      <Icon className="w-3.5 h-3.5 text-[#0078D4]" />
-                      {label}
+                  {certifications.map((cert) => (
+                    <div key={cert.label} className="flex items-center gap-2 text-xs text-[#979797]">
+                      {cert.logo ? (
+                        <Image src={cert.logo} alt="" width={14} height={14} className="w-3.5 h-3.5 object-contain" />
+                      ) : cert.icon ? (
+                        <cert.icon className="w-3.5 h-3.5 text-[#0078D4]" />
+                      ) : null}
+                      {cert.label}
                     </div>
                   ))}
                 </div>

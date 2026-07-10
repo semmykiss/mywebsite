@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Play, CheckCircle, Cloud, Shield } from "lucide-react";
+import { ArrowRight, Play, Shield, type LucideIcon } from "lucide-react";
 
-const badges = [
-  { icon: CheckCircle, text: "Microsoft Gold Partner" },
+const badges: { text: string; logo?: string; icon?: LucideIcon }[] = [
+  { logo: "/logos/microsoft.svg", text: "Microsoft Gold Partner" },
   { icon: Shield, text: "ISO 27001 Certified" },
-  { icon: Cloud, text: "Azure Expert MSP" },
+  { logo: "/logos/azure.svg", text: "Azure Expert MSP" },
 ];
 
 export function Hero() {
@@ -72,15 +73,22 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-wrap items-center justify-center gap-3"
           >
-            {badges.map(({ icon: Icon, text }) => (
-              <div
-                key={text}
-                className="tag-pill !bg-[#1e293b] !text-[#e5e5e5] normal-case"
-              >
-                <Icon className="w-3.5 h-3.5 text-[#0078D4]" />
-                {text}
-              </div>
-            ))}
+            {badges.map((badge) => {
+              const Icon = badge.icon;
+              return (
+                <div
+                  key={badge.text}
+                  className="tag-pill !bg-[#1e293b] !text-[#e5e5e5] normal-case"
+                >
+                  {badge.logo ? (
+                    <Image src={badge.logo} alt="" width={14} height={14} className="w-3.5 h-3.5 object-contain" />
+                  ) : Icon ? (
+                    <Icon className="w-3.5 h-3.5 text-[#0078D4]" />
+                  ) : null}
+                  {badge.text}
+                </div>
+              );
+            })}
           </motion.div>
         </div>
 
