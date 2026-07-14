@@ -1,7 +1,9 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Target, Eye, Heart } from "lucide-react";
 
 const pillars = [
@@ -11,9 +13,18 @@ const pillars = [
 ];
 
 export function AboutSnippet() {
+  const imgRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: imgRef,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="glow-orb glow-purple w-[460px] h-[460px] top-1/4 -right-60 opacity-70" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
           {/* Left: Content */}
           <motion.div
@@ -25,20 +36,40 @@ export function AboutSnippet() {
             <span className="tag-pill mb-4">
               About Pentacore Systems
             </span>
-            <h2 className="heading-secondary text-3xl sm:text-4xl lg:text-5xl text-[#0F172A] mb-6 text-balance">
+            <h2 className="heading-secondary text-3xl sm:text-4xl lg:text-5xl text-white mb-6 text-balance">
               A decade of delivering{" "}
               <span className="gradient-text">technology excellence</span>
             </h2>
-            <p className="text-[#444444] text-lg leading-relaxed mb-6">
+            <p className="text-[#A6B3C9] text-lg leading-relaxed mb-6">
               Founded with a clear vision—to make enterprise-grade technology accessible to every
               business—Pentacore Systems has grown into a trusted advisor for organisations across
               healthcare, education, financial services, government, and beyond.
             </p>
-            <p className="text-[#444444] text-lg leading-relaxed mb-8">
+            <p className="text-[#A6B3C9] text-lg leading-relaxed mb-8">
               Our team of certified engineers, architects, and consultants bring deep expertise
               in Microsoft, Azure, Cisco, and a broad ecosystem of technology platforms,
               delivering solutions that are secure, scalable, and always aligned with your goals.
             </p>
+
+            {/* Photo — glass framed with parallax */}
+            <div
+              ref={imgRef}
+              className="relative rounded-[2rem] overflow-hidden h-64 mb-8 border border-white/15 shadow-2xl shadow-black/40"
+            >
+              <motion.div style={{ y: imageY }} className="absolute inset-0 scale-125">
+                <Image
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80&auto=format&fit=crop"
+                  alt="Pentacore engineers collaborating on a client project"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060B1A]/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 glass-chip">
+                Certified engineers · Real outcomes
+              </div>
+            </div>
 
             <Link href="/about" className="btn-filled group">
               Learn Our Story
@@ -61,14 +92,14 @@ export function AboutSnippet() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="card-flat flex gap-5 p-6 group"
+                className="glass-card glass-card-hover flex gap-5 p-6 group"
               >
-                <div className="w-12 h-12 rounded-lg bg-[#0F172A] flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0078D4] to-[#06B6D4] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#0078D4]/30">
                   <pillar.icon className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-[#0F172A] text-base mb-1.5">{pillar.title}</h3>
-                  <p className="text-[#444444] text-sm leading-relaxed">{pillar.desc}</p>
+                  <h3 className="font-bold text-white text-base mb-1.5">{pillar.title}</h3>
+                  <p className="text-[#A6B3C9] text-sm leading-relaxed">{pillar.desc}</p>
                 </div>
               </motion.div>
             ))}

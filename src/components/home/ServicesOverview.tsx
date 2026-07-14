@@ -76,16 +76,18 @@ const container: Variants = {
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export function ServicesOverview() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 relative overflow-hidden">
+      <div className="glow-orb glow-cyan w-[500px] h-[500px] -bottom-60 -left-60 opacity-60" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -97,18 +99,18 @@ export function ServicesOverview() {
           <span className="tag-pill mb-4">
             What We Do
           </span>
-          <h2 className="heading-secondary text-3xl sm:text-4xl lg:text-5xl text-[#0F172A] text-balance mb-5">
+          <h2 className="heading-secondary text-3xl sm:text-4xl lg:text-5xl text-white text-balance mb-5">
             Comprehensive IT Solutions
             <br className="hidden sm:block" />
             <span className="gradient-text"> for Every Business Need</span>
           </h2>
-          <p className="text-[#444444] text-lg max-w-2xl mx-auto text-balance">
+          <p className="text-[#A6B3C9] text-lg max-w-2xl mx-auto text-balance">
             From cloud migration to cybersecurity, we deliver end-to-end technology services
             that drive measurable business outcomes.
           </p>
         </motion.div>
 
-        {/* Category tabs */}
+        {/* Category tabs — glass pills */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -120,10 +122,10 @@ export function ServicesOverview() {
             <button
               key={cat.label}
               onClick={() => setActive(i)}
-              className={`label-mono px-4 py-2.5 rounded-full transition-colors duration-200 ${
+              className={`label-mono px-4 py-2.5 rounded-full border transition-all duration-200 ${
                 i === active
-                  ? "bg-[#0F172A] text-white"
-                  : "bg-[#f3f3f3] text-[#444444] hover:bg-[#e5e5e5]"
+                  ? "bg-[#0078D4]/20 border-[#0078D4]/50 text-[#7CC3F2] shadow-lg shadow-[#0078D4]/20"
+                  : "bg-white/5 border-white/10 text-[#A6B3C9] hover:bg-white/10 hover:text-white"
               }`}
             >
               {cat.label}
@@ -144,10 +146,10 @@ export function ServicesOverview() {
             {categories[active].services.map((service) => (
               <motion.div key={service.name} variants={item}>
                 <Link href={service.href} className="group block h-full">
-                  <div className="card-flat h-full p-6 hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
+                  <div className="glass-card glass-card-hover h-full p-6 relative overflow-hidden">
                     {/* Tag */}
                     {service.tag && (
-                      <span className="absolute top-4 right-4 label-mono !text-[10px] px-2 py-1 rounded-full bg-[#f3f3f3] text-[#0078D4]">
+                      <span className="absolute top-4 right-4 label-mono !text-[10px] px-2 py-1 rounded-full bg-[#0078D4]/15 border border-[#0078D4]/30 text-[#7CC3F2]">
                         {service.tag}
                       </span>
                     )}
@@ -162,19 +164,19 @@ export function ServicesOverview() {
                       />
                     </div>
 
-                    <h3 className="font-bold text-[#0F172A] text-base mb-2 group-hover:text-[#0078D4] transition-colors">
+                    <h3 className="font-bold text-white text-base mb-2 group-hover:text-[#40A3E0] transition-colors">
                       {service.name}
                     </h3>
-                    <p className="text-[#979797] text-sm leading-relaxed">{service.desc}</p>
+                    <p className="text-[#7C8AA5] text-sm leading-relaxed">{service.desc}</p>
 
                     {/* Learn more arrow */}
-                    <div className="flex items-center gap-1 mt-4 text-[#0078D4] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center gap-1 mt-4 text-[#40A3E0] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                       <span>Learn more</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </div>
 
-                    {/* Hover accent border */}
-                    <div className={`absolute bottom-0 left-0 right-0 h-0.5 ${service.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                    {/* Hover accent glow line */}
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0078D4] via-[#06B6D4] to-[#7C3AED] opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </Link>
               </motion.div>

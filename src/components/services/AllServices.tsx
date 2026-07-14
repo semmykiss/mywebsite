@@ -68,8 +68,11 @@ const categories = [
 
 export function AllServices() {
   return (
-    <section className="py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 relative overflow-hidden">
+      <div className="glow-orb glow-blue w-[460px] h-[460px] top-40 -left-56 opacity-50" />
+      <div className="glow-orb glow-purple w-[460px] h-[460px] bottom-40 -right-56 opacity-50" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-20">
           {categories.map((cat, catIdx) => (
             <div key={cat.name}>
@@ -80,11 +83,11 @@ export function AllServices() {
                 transition={{ duration: 0.5 }}
                 className="flex items-center gap-4 mb-8"
               >
-                <div className={`w-10 h-10 rounded-lg ${cat.color} flex items-center justify-center flex-shrink-0`}>
+                <div className={`w-10 h-10 rounded-lg ${cat.color} border border-white/20 shadow-lg shadow-black/25 flex items-center justify-center flex-shrink-0`}>
                   <span className="text-white font-bold text-sm">{catIdx + 1}</span>
                 </div>
                 <div>
-                  <h2 className="heading-secondary text-xl text-[#0F172A]">{cat.name}</h2>
+                  <h2 className="heading-secondary text-xl text-white">{cat.name}</h2>
                   <div className={`h-0.5 w-16 rounded-full ${cat.color} mt-1`} />
                 </div>
               </motion.div>
@@ -99,7 +102,7 @@ export function AllServices() {
                     transition={{ duration: 0.4, delay: i * 0.06 }}
                   >
                     <Link href={`/services/${service.slug}`} className="group block h-full">
-                      <div className="card-flat h-full p-6 hover:-translate-y-1 transition-transform duration-300">
+                      <div className="glass-card glass-card-hover h-full p-6">
                         <div className="mb-4 group-hover:scale-110 transition-transform inline-block">
                           <BrandIcon
                             slug={service.slug}
@@ -109,11 +112,11 @@ export function AllServices() {
                             size="sm"
                           />
                         </div>
-                        <h3 className="font-bold text-[#0F172A] text-base mb-2 group-hover:text-[#0078D4] transition-colors">
+                        <h3 className="font-bold text-white text-base mb-2 group-hover:text-[#40A3E0] transition-colors">
                           {service.name}
                         </h3>
-                        <p className="text-[#979797] text-sm leading-relaxed mb-4">{service.desc}</p>
-                        <div className="flex items-center gap-1 text-[#0078D4] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        <p className="text-[#7C8AA5] text-sm leading-relaxed mb-4">{service.desc}</p>
+                        <div className="flex items-center gap-1 text-[#40A3E0] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                           <span>Learn more</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </div>

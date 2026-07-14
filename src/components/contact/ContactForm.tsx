@@ -56,18 +56,18 @@ export function ContactForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="flex flex-col items-center justify-center py-16 text-center"
+        className="glass-card flex flex-col items-center justify-center py-16 px-8 text-center"
       >
-        <div className="w-20 h-20 rounded-2xl bg-emerald-600 flex items-center justify-center mb-6">
+        <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-lg shadow-emerald-600/30 flex items-center justify-center mb-6">
           <CheckCircle className="w-10 h-10 text-white" />
         </div>
-        <h3 className="text-2xl font-bold text-[#0F172A] mb-3">Message Sent!</h3>
-        <p className="text-[#444444] text-lg max-w-sm">
+        <h3 className="text-2xl font-bold text-white mb-3">Message Sent!</h3>
+        <p className="text-[#A6B3C9] text-lg max-w-sm">
           Thank you for reaching out. One of our consultants will be in touch within 2 business hours.
         </p>
         <button
           onClick={() => setSubmitted(false)}
-          className="mt-8 px-6 py-3 bg-[#0F172A] text-white rounded-lg text-sm font-semibold hover:bg-[#0078D4] transition-colors"
+          className="btn-filled mt-8 text-sm !py-3 !px-6"
         >
           Send Another Message
         </button>
@@ -81,95 +81,96 @@ export function ContactForm() {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
+      className="glass-card p-8"
     >
       <div className="mb-8">
-        <h2 className="heading-secondary text-2xl text-[#0F172A] mb-2">Book a Consultation</h2>
-        <p className="text-[#444444]">Fill in the form and we&apos;ll get back to you within 2 hours during business days.</p>
+        <h2 className="heading-secondary text-2xl text-white mb-2">Book a Consultation</h2>
+        <p className="text-[#A6B3C9]">Fill in the form and we&apos;ll get back to you within 2 hours during business days.</p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-[#444444] mb-1.5">First Name *</label>
+            <label className="block text-sm font-medium text-[#A6B3C9] mb-1.5">First Name *</label>
             <input
               {...register("firstName")}
               placeholder="John"
-              className="w-full px-4 py-3 rounded-lg bg-[#f3f3f3] text-[#0F172A] text-sm placeholder:text-[#979797] focus:outline-none focus:ring-2 focus:ring-[#0078D4] transition-shadow"
+              className="glass-input"
             />
-            {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>}
+            {errors.firstName && <p className="text-rose-400 text-xs mt-1">{errors.firstName.message}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-[#444444] mb-1.5">Last Name *</label>
+            <label className="block text-sm font-medium text-[#A6B3C9] mb-1.5">Last Name *</label>
             <input
               {...register("lastName")}
               placeholder="Smith"
-              className="w-full px-4 py-3 rounded-lg bg-[#f3f3f3] text-[#0F172A] text-sm placeholder:text-[#979797] focus:outline-none focus:ring-2 focus:ring-[#0078D4] transition-shadow"
+              className="glass-input"
             />
-            {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>}
+            {errors.lastName && <p className="text-rose-400 text-xs mt-1">{errors.lastName.message}</p>}
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[#444444] mb-1.5">Work Email *</label>
+          <label className="block text-sm font-medium text-[#A6B3C9] mb-1.5">Work Email *</label>
           <input
             {...register("email")}
             type="email"
             placeholder="john@company.com"
-            className="w-full px-4 py-3 rounded-lg bg-[#f3f3f3] text-[#0F172A] text-sm placeholder:text-[#979797] focus:outline-none focus:ring-2 focus:ring-[#0078D4] transition-shadow"
+            className="glass-input"
           />
-          {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+          {errors.email && <p className="text-rose-400 text-xs mt-1">{errors.email.message}</p>}
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-[#444444] mb-1.5">Company *</label>
+            <label className="block text-sm font-medium text-[#A6B3C9] mb-1.5">Company *</label>
             <input
               {...register("company")}
               placeholder="Acme Ltd"
-              className="w-full px-4 py-3 rounded-lg bg-[#f3f3f3] text-[#0F172A] text-sm placeholder:text-[#979797] focus:outline-none focus:ring-2 focus:ring-[#0078D4] transition-shadow"
+              className="glass-input"
             />
-            {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company.message}</p>}
+            {errors.company && <p className="text-rose-400 text-xs mt-1">{errors.company.message}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-[#444444] mb-1.5">Phone</label>
+            <label className="block text-sm font-medium text-[#A6B3C9] mb-1.5">Phone</label>
             <input
               {...register("phone")}
               type="tel"
               placeholder="+44 7700 000000"
-              className="w-full px-4 py-3 rounded-lg bg-[#f3f3f3] text-[#0F172A] text-sm placeholder:text-[#979797] focus:outline-none focus:ring-2 focus:ring-[#0078D4] transition-shadow"
+              className="glass-input"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[#444444] mb-1.5">Service of Interest *</label>
+          <label className="block text-sm font-medium text-[#A6B3C9] mb-1.5">Service of Interest *</label>
           <select
             {...register("service")}
-            className="w-full px-4 py-3 rounded-lg bg-[#f3f3f3] text-[#0F172A] text-sm focus:outline-none focus:ring-2 focus:ring-[#0078D4] transition-shadow appearance-none"
+            className="glass-input appearance-none [&>option]:bg-[#0B1226] [&>option]:text-white"
           >
             <option value="">Select a service...</option>
             {services.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
           </select>
-          {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service.message}</p>}
+          {errors.service && <p className="text-rose-400 text-xs mt-1">{errors.service.message}</p>}
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[#444444] mb-1.5">How can we help? *</label>
+          <label className="block text-sm font-medium text-[#A6B3C9] mb-1.5">How can we help? *</label>
           <textarea
             {...register("message")}
             rows={4}
             placeholder="Tell us about your IT challenges, current environment, or what you're looking to achieve..."
-            className="w-full px-4 py-3 rounded-lg bg-[#f3f3f3] text-[#0F172A] text-sm placeholder:text-[#979797] focus:outline-none focus:ring-2 focus:ring-[#0078D4] transition-shadow resize-none"
+            className="glass-input resize-none"
           />
-          {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
+          {errors.message && <p className="text-rose-400 text-xs mt-1">{errors.message.message}</p>}
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#0F172A] text-white rounded-lg font-semibold text-base hover:bg-[#0078D4] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+          className="btn-filled w-full text-base font-semibold !py-4 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {loading ? (
             <>
@@ -184,7 +185,7 @@ export function ContactForm() {
           )}
         </button>
 
-        <p className="text-center text-xs text-[#979797]">
+        <p className="text-center text-xs text-[#7C8AA5]">
           By submitting, you agree to our Privacy Policy. We never share your data.
         </p>
       </form>

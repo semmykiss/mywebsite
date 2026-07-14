@@ -66,8 +66,9 @@ const thirdColumn = testimonials.slice(6, 9);
 
 export function Testimonials() {
   return (
-    <section className="py-24 bg-[#f3f3f3] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 relative overflow-hidden">
+      <div className="glow-orb glow-cyan w-[460px] h-[460px] top-0 -right-52 opacity-60" />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +79,7 @@ export function Testimonials() {
           <span className="tag-pill mb-4">
             Client Success Stories
           </span>
-          <h2 className="heading-secondary text-3xl sm:text-4xl lg:text-5xl text-[#0F172A] text-balance">
+          <h2 className="heading-secondary text-3xl sm:text-4xl lg:text-5xl text-white text-balance">
             Trusted by leaders across{" "}
             <span className="gradient-text">every industry</span>
           </h2>

@@ -28,14 +28,14 @@ export function BrandIcon({ slug, name, fallback: Fallback, fallbackColor, size 
 
   if (logo) {
     return (
-      <div className={`${box} rounded-lg bg-white ring-1 ring-black/5 flex items-center justify-center p-2`}>
+      <div className={`${box} rounded-xl bg-white/90 backdrop-blur-md border border-white/30 shadow-lg shadow-black/20 flex items-center justify-center p-2`}>
         <Image src={logo} alt={name} width={32} height={32} className="w-full h-full object-contain" />
       </div>
     );
   }
 
   return (
-    <div className={`${box} rounded-lg ${fallbackColor} flex items-center justify-center`}>
+    <div className={`${box} rounded-xl ${fallbackColor} border border-white/20 shadow-lg shadow-black/25 flex items-center justify-center`}>
       <Fallback className={`${iconSize} text-white`} />
     </div>
   );

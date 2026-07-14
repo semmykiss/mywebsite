@@ -13,8 +13,11 @@ const steps = [
 
 export function ServiceProcess() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 relative overflow-hidden">
+      <div className="glow-orb glow-cyan w-[440px] h-[440px] -top-52 left-1/2 -translate-x-1/2 opacity-60" />
+      <div className="absolute inset-0 grid-dots pointer-events-none opacity-60" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -25,17 +28,17 @@ export function ServiceProcess() {
           <span className="tag-pill mb-4">
             How We Work
           </span>
-          <h2 className="heading-secondary text-3xl sm:text-4xl text-[#0F172A] mb-4 text-balance">
+          <h2 className="heading-secondary text-3xl sm:text-4xl text-white mb-4 text-balance">
             Our proven delivery process
           </h2>
-          <p className="text-[#444444] max-w-xl mx-auto">
+          <p className="text-[#A6B3C9] max-w-xl mx-auto">
             A structured, client-centric methodology that consistently delivers results on time and within budget.
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Connecting line */}
-          <div className="absolute top-10 left-8 right-8 h-px bg-[#c6c6c6] hidden lg:block" />
+          {/* Connecting line — gradient */}
+          <div className="absolute top-10 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#0078D4]/50 to-transparent hidden lg:block" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {steps.map((step, i) => (
@@ -47,18 +50,18 @@ export function ServiceProcess() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="relative text-center"
               >
-                {/* Step icon */}
+                {/* Step icon — glass tile */}
                 <div className="relative inline-flex flex-col items-center mb-5">
-                  <div className="w-20 h-20 rounded-2xl bg-[#0F172A] flex items-center justify-center relative z-10">
-                    <step.icon className="w-8 h-8 text-white" />
+                  <div className="w-20 h-20 rounded-2xl glass-card flex items-center justify-center relative z-10">
+                    <step.icon className="w-8 h-8 text-[#7CC3F2]" />
                   </div>
-                  <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-white text-[#0078D4] text-[10px] font-bold flex items-center justify-center z-20 label-mono !text-[10px]">
+                  <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-br from-[#0078D4] to-[#06B6D4] text-white text-[10px] font-bold flex items-center justify-center z-20 label-mono !text-[10px] shadow-lg shadow-[#0078D4]/40">
                     {step.step}
                   </span>
                 </div>
 
-                <h3 className="font-bold text-[#0F172A] text-sm mb-2">{step.title}</h3>
-                <p className="text-[#979797] text-xs leading-relaxed">{step.desc}</p>
+                <h3 className="font-bold text-white text-sm mb-2">{step.title}</h3>
+                <p className="text-[#7C8AA5] text-xs leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>

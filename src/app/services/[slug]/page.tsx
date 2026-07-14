@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CheckCircle, ArrowRight, ArrowLeft, Phone } from "lucide-react";
 import { CTA } from "@/components/home/CTA";
+
+const heroPhotos: Record<string, string> = {
+  "microsoft-365": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80&auto=format&fit=crop",
+  azure: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80&auto=format&fit=crop",
+  cybersecurity: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&q=80&auto=format&fit=crop",
+  "custom-erp-solutions": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80&auto=format&fit=crop",
+  "web-development": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1920&q=80&auto=format&fit=crop",
+  "web-application": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80&auto=format&fit=crop",
+};
 
 const services: Record<
   string,
@@ -210,36 +220,44 @@ export default async function ServicePage({
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-40 pb-20 bg-[#0F172A] overflow-hidden">
-        <div className="absolute inset-0 grid-dots pointer-events-none" />
+      <section className="relative pt-40 pb-20 overflow-hidden">
+        {/* Background photo */}
+        <div className="absolute inset-0">
+          <Image
+            src={heroPhotos[slug] ?? "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80&auto=format&fit=crop"}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#060B1A]/70 via-[#060B1A]/85 to-[#060B1A]" />
+        </div>
+        <div className="glow-orb glow-blue w-[480px] h-[480px] -top-32 -left-32" />
+        <div className="absolute inset-0 grid-lines pointer-events-none" />
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-[#979797] hover:text-white transition-colors mb-8 text-sm"
+            className="inline-flex items-center gap-2 text-[#7C8AA5] hover:text-white transition-colors mb-8 text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Services
           </Link>
           <div className="max-w-3xl">
-            <span className="tag-pill !bg-[#1e293b] !text-[#e5e5e5] mb-4">
+            <span className="tag-pill mb-4">
               {service.tagline}
             </span>
             <h1 className="heading-display text-white text-5xl sm:text-6xl lg:text-7xl mb-6">
               {service.title}
             </h1>
-            <p className="text-[#979797] text-xl leading-relaxed mb-8">{service.description}</p>
+            <p className="text-[#A6B3C9] text-xl leading-relaxed mb-8">{service.description}</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/contact"
-                className="group flex items-center gap-2 px-7 py-4 bg-white text-[#0F172A] rounded-lg font-semibold hover:bg-[#0078D4] hover:text-white transition-colors"
-              >
+              <Link href="/contact" className="btn-filled group px-7 py-4 font-semibold">
                 Get a Free Assessment
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <a
-                href="tel:+1234567890"
-                className="flex items-center gap-2 px-7 py-4 bg-transparent text-white rounded-lg font-semibold border-[1.5px] border-white/30 hover:border-white transition-colors"
-              >
+              <a href="tel:+2348137996917" className="btn-ghost px-7 py-4 font-semibold">
                 <Phone className="w-4 h-4" />
                 Call Us Now
               </a>
@@ -249,19 +267,20 @@ export default async function ServicePage({
       </section>
 
       {/* Benefits */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 relative overflow-hidden">
+        <div className="glow-orb glow-cyan w-[420px] h-[420px] top-20 -right-52 opacity-60" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
-              <h2 className="heading-secondary text-3xl text-[#0F172A] mb-6">
+              <h2 className="heading-secondary text-3xl text-white mb-6">
                 What&apos;s included in our{" "}
                 <span className="gradient-text">{service.title} service</span>
               </h2>
               <ul className="space-y-4">
                 {service.benefits.map((b) => (
                   <li key={b} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#0078D4] flex-shrink-0 mt-0.5" />
-                    <span className="text-[#444444]">{b}</span>
+                    <CheckCircle className="w-5 h-5 text-[#40A3E0] flex-shrink-0 mt-0.5" />
+                    <span className="text-[#A6B3C9]">{b}</span>
                   </li>
                 ))}
               </ul>
@@ -269,15 +288,15 @@ export default async function ServicePage({
 
             {/* Process */}
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-[#0F172A] mb-5">Our Delivery Process</h3>
+              <h3 className="text-lg font-bold text-white mb-5">Our Delivery Process</h3>
               {service.process.map((p) => (
-                <div key={p.step} className="flex gap-4 p-4 rounded-2xl bg-[#f3f3f3]">
-                  <div className="w-10 h-10 rounded-lg bg-[#0F172A] flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
+                <div key={p.step} className="glass-card flex gap-4 p-4">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0078D4] to-[#06B6D4] shadow-lg shadow-[#0078D4]/25 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
                     {p.step}
                   </div>
                   <div>
-                    <p className="font-bold text-[#0F172A] text-sm">{p.title}</p>
-                    <p className="text-[#979797] text-sm mt-0.5">{p.desc}</p>
+                    <p className="font-bold text-white text-sm">{p.title}</p>
+                    <p className="text-[#7C8AA5] text-sm mt-0.5">{p.desc}</p>
                   </div>
                 </div>
               ))}
@@ -287,16 +306,17 @@ export default async function ServicePage({
       </section>
 
       {/* FAQs */}
-      <section className="py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="heading-secondary text-3xl text-[#0F172A] mb-10 text-center">
+      <section className="py-20 relative overflow-hidden">
+        <div className="glow-orb glow-purple w-[400px] h-[400px] bottom-0 -left-52 opacity-50" />
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="heading-secondary text-3xl text-white mb-10 text-center">
             Frequently Asked Questions
           </h2>
           <div className="space-y-4">
             {service.faqs.map(({ q, a }) => (
-              <div key={q} className="card-flat p-6">
-                <h4 className="font-bold text-[#0F172A] text-base mb-3">{q}</h4>
-                <p className="text-[#444444] text-sm leading-relaxed">{a}</p>
+              <div key={q} className="glass-card p-6">
+                <h4 className="font-bold text-white text-base mb-3">{q}</h4>
+                <p className="text-[#A6B3C9] text-sm leading-relaxed">{a}</p>
               </div>
             ))}
           </div>
